@@ -10,8 +10,7 @@ import java.util.Date;
 @Component
 public class JwtUtil {
 
-    private final String SECRET_KEY = "my_secret_key_wallet"; // Use env in prod
-
+    private final String SECRET_KEY = "dummy_sk_wallet_4Rnd0mS3cr3tK3y@2024!ZxQ9vT8bN3mP6sY2wA5dG7hJ";
     public String generateToken(String mobile) {
         return Jwts.builder()
                 .setSubject(mobile)
