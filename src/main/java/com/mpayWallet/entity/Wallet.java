@@ -18,7 +18,7 @@ public class Wallet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer walletId;
+    private Long walletId;
 
     @NotNull
     @PositiveOrZero(message = "Balance must be zero or positive")

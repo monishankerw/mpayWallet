@@ -10,12 +10,12 @@ import java.math.BigInteger;
 @Builder
 public class WalletDto {
 
-    private Integer walletId;
+    private Long walletId;
 
     @NotNull
     @PositiveOrZero(message = "Balance must be zero or positive")
-    private BigInteger balance;
+    private Long balance;
 
     @NotNull(message = "Customer ID is required")
-    private Integer customerId;
+    private Long customerId;
 }

@@ -67,7 +67,7 @@ public class CustomerServiceImpl implements CustomerService {
                 .customerId(savedCustomer.getCustomerId())
                 .customerName(savedCustomer.getCustomerName())
                 .email(savedCustomer.getEmail())
-                .mobile(savedCustomer.getMobile())
+                .mobile((savedCustomer.getMobile()))
                 .walletBalance(savedCustomer.getWallet().getBalance())
                 .build();
 

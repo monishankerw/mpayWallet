@@ -11,17 +11,17 @@ import java.util.Date;
 @Builder
 public class TransactionDto {
 
-    private Integer transactionId;
+    private Long transactionId;
 
     @NotNull(message = "Wallet ID is required")
-    private Integer walletId;
+    private Long walletId;
 
     @NotBlank(message = "Transaction type is required")
     private String transactionType;
 
     @NotNull
     @Positive(message = "Amount must be positive")
-    private BigInteger amount;
+    private Long amount;
 
     @PastOrPresent(message = "Transaction date must be in the past or present")
     private Date transactionDate;

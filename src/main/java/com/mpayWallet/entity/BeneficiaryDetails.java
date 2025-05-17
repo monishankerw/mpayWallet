@@ -15,7 +15,7 @@ public class BeneficiaryDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer beneficiaryId;
+    private Long beneficiaryId;
 
     @ManyToOne
     @JoinColumn(name = "wallet_id")
@@ -25,6 +25,6 @@ public class BeneficiaryDetails {
     private String beneficiaryName;
 
     @Pattern(regexp = "\\d{10}", message = "Mobile must be 10 digits")
-    private String beneficiaryMobile;
+    private Long beneficiaryMobile;
 
 }

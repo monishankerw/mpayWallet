@@ -9,14 +9,14 @@ import jakarta.validation.constraints.*;
 @Builder
 public class BeneficiaryDetailsDto {
 
-    private Integer beneficiaryId;
+    private Long beneficiaryId;
 
     @NotNull(message = "Wallet ID is required")
-    private Integer walletId;
+    private Long walletId;
 
     @NotBlank(message = "Beneficiary name is required")
     private String beneficiaryName;
 
     @Pattern(regexp = "\\d{10}", message = "Beneficiary mobile must be 10 digits")
-    private String beneficiaryMobile;
+    private Long beneficiaryMobile;
 }

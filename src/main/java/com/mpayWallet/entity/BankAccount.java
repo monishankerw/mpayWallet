@@ -1,10 +1,7 @@
 package com.mpayWallet.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.PositiveOrZero;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,14 +12,16 @@ import java.math.BigInteger;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "bank_account", uniqueConstraints = @UniqueConstraint(columnNames = "accountNumber"))
+
 public class BankAccount {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer accountNumber;
+    private Long accountNumber;
 
-    @ManyToOne
-    @JoinColumn(name = "wallet_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "wallet_id", nullable = false)
     private Wallet wallet;
 
     @NotBlank(message = "Bank name is required")
@@ -33,9 +32,11 @@ public class BankAccount {
 
     @NotNull
     @PositiveOrZero(message = "Balance must be zero or positive")
-    private BigInteger balance;
+    private Long balance;
 
-    @Pattern(regexp = "\\d{10}", message = "Mobile must be 10 digits")
-    private String mobile;
-
+    @Min(value = 6000000000L, message = "Mobile number must be valid")
+    @Max(value = 9999999999L, message = "Mobile number must be valid")
+    private Long mobile;
+    @Version
+    private int version;
 }

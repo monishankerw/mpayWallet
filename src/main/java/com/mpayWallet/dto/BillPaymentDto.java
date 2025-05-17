@@ -11,20 +11,20 @@ import java.util.Date;
 @Builder
 public class BillPaymentDto {
 
-    private Integer billId;
+    private Long billId;
 
     @NotNull(message = "Wallet ID is required")
-    private Integer walletId;
+    private Long walletId;
 
     @NotNull(message = "User ID is required")
-    private Integer userId;
+    private Long userId;
 
     @NotBlank(message = "Bill type is required")
     private String billType;
 
     @NotNull
     @Positive(message = "Amount must be positive")
-    private BigInteger amount;
+    private Long amount;
 
     @PastOrPresent(message = "Payment date must be in the past or present")
     private Date paymentDate;

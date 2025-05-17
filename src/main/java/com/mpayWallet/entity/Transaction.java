@@ -20,7 +20,7 @@ public class Transaction {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer transactionId;
+    private Long transactionId;
 
     @ManyToOne
     @JoinColumn(name = "wallet_id")
@@ -31,7 +31,7 @@ public class Transaction {
 
     @NotNull
     @Positive(message = "Amount must be positive")
-    private BigInteger amount;
+    private Long amount;
 
     @PastOrPresent(message = "Transaction date cannot be in the future")
     private Date transactionDate;

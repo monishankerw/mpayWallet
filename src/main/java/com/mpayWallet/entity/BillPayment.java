@@ -20,21 +20,21 @@ public class BillPayment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer billId;
+    private Long billId;
 
     @ManyToOne
     @JoinColumn(name = "wallet_id")
     private Wallet wallet;
 
     @NotNull(message = "User ID is required")
-    private Integer userId;
+    private Long userId;
 
     @NotBlank(message = "Bill type is required")
     private String billType;
 
     @NotNull
     @Positive(message = "Amount must be positive")
-    private BigInteger amount;
+    private Long amount;
 
     @PastOrPresent(message = "Payment date cannot be in the future")
     private Date paymentDate;

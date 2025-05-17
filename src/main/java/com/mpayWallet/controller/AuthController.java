@@ -32,7 +32,7 @@ public class AuthController {
             )
         );
 
-        String jwt = jwtUtil.generateToken(authRequest.getMobile());
+        String jwt = jwtUtil.generateToken(Long.valueOf(String.valueOf(authRequest.getMobile())));
         return ResponseEntity.ok(Collections.singletonMap("token", jwt));
     }
 }

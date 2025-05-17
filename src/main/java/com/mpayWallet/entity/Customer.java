@@ -10,38 +10,36 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
-
 public class Customer {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long customerId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long customerId;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "wallet_id")
-	private Wallet wallet;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "wallet_id")
+    private Wallet wallet;
 
-	@NotBlank(message = "Customer name is required")
-	private String customerName;
+    @NotBlank(message = "Customer name is required")
+    private String customerName;
 
-	@NotBlank(message = "Address is required")
-	private String customerAddress;
+    @NotBlank(message = "Customer address is required")
+    private String customerAddress;
 
-	@NotBlank(message = "State is required")
-	private String customerState;
+    @NotBlank(message = "Customer state is required")
+    private String customerState;
 
-	@Pattern(regexp = "\\d{10}", message = "Mobile must be 10 digits")
-	private String mobile;
+    @Column(unique = true)
+    private Long mobile;
 
-	@Email(message = "Invalid email format")
-	private String email;
+    @Email(message = "Invalid email format")
+    private String email;
 
-	@Size(min = 6, message = "Password must be at least 6 characters")
-	private String password;
-
+    @Size(min = 6, message = "Password must be at least 6 characters")
+    private String password;
 }

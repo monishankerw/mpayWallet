@@ -13,6 +13,6 @@ public class CustomerResponseDTO {
     private Long customerId;
     private String customerName;
     private String email;
-    private String mobile;
+    private Long mobile;
     private Double walletBalance;
 }

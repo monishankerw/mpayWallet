@@ -28,11 +28,19 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
-                                "customers/register",
-                                "/api/auth/login",
-                                "/swagger-ui/**",
-                                "/v3/api-docs/**"
+                                "/customers/register",       // public
+                                "/api/auth/login",           // public
+                                "/swagger-ui/**",            // Swagger UI
+                                "/v3/api-docs/**"            // Swagger docs
                         ).permitAll()
+                        .requestMatchers(
+                                "/wallet/me",                // authenticated
+                                "/wallet/**",                // authenticated
+                                "/transactions/**",          // authenticated
+                                "/api/bank-account/**",         // authenticated
+                                "/beneficiaries/**",         // authenticated
+                                "/bill-payments/**"          // authenticated
+                        ).authenticated()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session

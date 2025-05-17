@@ -17,9 +17,9 @@ public class JwtUtil {
     @Value("${jwt.expiration}")
     private long EXPIRATION_TIME;
 
-    public String generateToken(String mobile) {
+    public String generateToken(Long mobile) {
         return Jwts.builder()
-                .setSubject(mobile)
+                .setSubject(String.valueOf(mobile))
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME ))
                 .signWith(Keys.hmacShaKeyFor(SECRET_KEY.getBytes()), SignatureAlgorithm.HS256)

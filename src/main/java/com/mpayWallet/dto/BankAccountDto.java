@@ -10,7 +10,7 @@ import java.math.BigInteger;
 @Builder
 public class BankAccountDto {
 
-    private Integer accountNumber;
+    private Long accountNumber;
 
     @NotBlank(message = "Bank name is required")
     private String bankName;
@@ -20,11 +20,12 @@ public class BankAccountDto {
 
     @NotNull
     @PositiveOrZero(message = "Balance must be zero or positive")
-    private BigInteger balance;
+    private Long balance;
 
-    @Pattern(regexp = "\\d{10}", message = "Mobile must be 10 digits")
-    private String mobile;
+    @Min(value = 6000000000L, message = "Mobile number must be valid")
+    @Max(value = 9999999999L, message = "Mobile number must be valid")
+    private Long mobile;
 
     @NotNull(message = "Wallet ID is required")
-    private Integer walletId;
+    private Long walletId;
 }
