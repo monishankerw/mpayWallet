@@ -17,6 +17,7 @@ public class BeneficiaryDetailsDto {
     @NotBlank(message = "Beneficiary name is required")
     private String beneficiaryName;
 
-    @Pattern(regexp = "\\d{10}", message = "Beneficiary mobile must be 10 digits")
-    private Long beneficiaryMobile;
+    @Min(value = 6000000000L, message = "Mobile number must be valid")
+    @Max(value = 9999999999L, message = "Mobile number must be valid")
+    private Long mobile;
 }

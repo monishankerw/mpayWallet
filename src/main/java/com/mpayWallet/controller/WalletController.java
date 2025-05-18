@@ -40,7 +40,7 @@ public class WalletController {
     }
     @PostMapping("/wallet/fund-by-mobile")
     public ResponseEntity<ApiResponse<AddMoneyResponse>> addMoneyByMobile(@RequestBody @Valid AddMoneyRequest request) {
-        log.info("Request received to add money via mobile number: {}", request.getMobileNumber());
+        log.info("Request received to add money via mobile number: {}", request.getMobile());
         return ResponseEntity.ok(walletService.addMoneyByMobile(request));
     }
 }

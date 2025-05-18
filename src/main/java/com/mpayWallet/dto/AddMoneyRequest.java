@@ -9,8 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 public class AddMoneyRequest {
 
-    @NotBlank(message = "Mobile number is required")
-    private Long mobileNumber;
+    private Long mobile;
 
     @Min(value = 1, message = "Amount must be greater than zero")
     private Double amount;

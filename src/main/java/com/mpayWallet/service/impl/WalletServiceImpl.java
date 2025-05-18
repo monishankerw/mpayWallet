@@ -110,13 +110,13 @@ public class WalletServiceImpl implements WalletService {
     @Transactional
     @Override
     public ApiResponse<AddMoneyResponse> addMoneyByMobile(AddMoneyRequest request) {
-        log.info("Finding customer by mobile number: {}", request.getMobileNumber());
-        Customer customer = customerRepository.findByMobile(request.getMobileNumber())
-                .orElseThrow(() -> new ResourceNotFoundException("Customer not found with mobile: " + request.getMobileNumber()));
+        log.info("Finding customer by mobile number: {}", request.getMobile());
+        Customer customer = customerRepository.findByMobile(request.getMobile())
+                .orElseThrow(() -> new ResourceNotFoundException("Customer not found with mobile: " + request.getMobile()));
 
         Wallet wallet = customer.getWallet();
         if (wallet == null) {
-            throw new ResourceNotFoundException("Wallet not found for customer with mobile: " + request.getMobileNumber());
+            throw new ResourceNotFoundException("Wallet not found for customer with mobile: " + request.getMobile());
         }
 
         log.info("Current wallet balance: {}", wallet.getBalance());
@@ -137,7 +137,7 @@ public class WalletServiceImpl implements WalletService {
 
         AddMoneyResponse response = new AddMoneyResponse(
                 wallet.getWalletId(),
-                request.getMobileNumber(),
+                request.getMobile(),
                 wallet.getBalance(),
                 "Money added successfully"
         );

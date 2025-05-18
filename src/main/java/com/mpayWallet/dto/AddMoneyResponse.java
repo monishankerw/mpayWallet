@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AddMoneyResponse {
     private Long walletId;
-    private Long mobileNumber;
+    private Long mobile;
     private Double updatedBalance;
     private String message;
 }
