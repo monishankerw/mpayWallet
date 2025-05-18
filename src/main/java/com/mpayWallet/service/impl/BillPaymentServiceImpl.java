@@ -22,7 +22,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class BillPaymentServiceImpl implements BillPaymentService {
 
-    private finals WalletRepository walletRepository;
+    private final WalletRepository walletRepository;
     private final BillPaymentRepository billPaymentRepository;
     private final TransactionRepository transactionRepository;
     private final NotificationService notificationService;
