@@ -27,9 +27,10 @@ public class BankAccountServiceImpl implements BankAccountService {
         }
 
         BankAccount account = new BankAccount();
+        account.setAccountNumber(dto.getAccountNumber());
         account.setWallet(optionalWallet.get());
         account.setBankName(dto.getBankName());
-        account.setIFSC(dto.getIFSC());
+        account.setIfsc(dto.getIfsc());
         account.setBalance(dto.getBalance());
         account.setMobile(dto.getMobile());
 
@@ -50,7 +51,7 @@ public class BankAccountServiceImpl implements BankAccountService {
         BankAccountDto dto = BankAccountDto.builder()
                 .accountNumber(acc.getAccountNumber())
                 .bankName(acc.getBankName())
-                .IFSC(acc.getIFSC())
+                .ifsc(acc.getIfsc())
                 .balance(acc.getBalance())
                 .mobile(acc.getMobile())
                 .walletId(acc.getWallet().getWalletId())

@@ -6,20 +6,20 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigInteger;
-
+@Entity
+@Table(name = "bank_account", uniqueConstraints = @UniqueConstraint(columnNames = "accountNumber"))
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name = "bank_account", uniqueConstraints = @UniqueConstraint(columnNames = "accountNumber"))
-
 public class BankAccount {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bccId;
-    @NotBlank(message = "Bank name is required")
+
+
+    @NotNull(message = "Account number is required")
+    @Positive(message = "Account number must be positive")
     private Long accountNumber;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -30,7 +30,7 @@ public class BankAccount {
     private String bankName;
 
     @Pattern(regexp = "^[A-Z]{4}0[A-Z0-9]{6}$", message = "Invalid IFSC code format")
-    private String IFSC;
+    private String ifsc;
 
     @NotNull
     @PositiveOrZero(message = "Balance must be zero or positive")
@@ -39,6 +39,7 @@ public class BankAccount {
     @Min(value = 6000000000L, message = "Mobile number must be valid")
     @Max(value = 9999999999L, message = "Mobile number must be valid")
     private Long mobile;
+
     @Version
     private int version;
 }

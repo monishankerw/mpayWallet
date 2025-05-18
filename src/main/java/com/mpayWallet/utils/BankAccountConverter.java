@@ -14,7 +14,7 @@ public class BankAccountConverter {
         return BankAccountDto.builder()
                 .accountNumber(entity.getAccountNumber())
                 .bankName(entity.getBankName())
-                .IFSC(entity.getIFSC())
+                .ifsc(entity.getIfsc())
                 .balance(entity.getBalance())
                 // Assuming entity.getMobile() is a String or BigInteger, safely convert to Long
                 .mobile(entity.getMobile() != null ? Long.valueOf(entity.getMobile()) : null)
@@ -32,7 +32,7 @@ public class BankAccountConverter {
         BankAccount entity = new BankAccount();
         entity.setAccountNumber(dto.getAccountNumber());
         entity.setBankName(dto.getBankName());
-        entity.setIFSC(dto.getIFSC());
+        entity.setIfsc(dto.getIfsc());
         entity.setBalance(dto.getBalance());
         // Convert Long mobile to String (or BigInteger) based on your entity field type
         entity.setMobile(dto.getMobile() != null ? dto.getMobile() : null);

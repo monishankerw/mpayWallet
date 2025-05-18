@@ -10,13 +10,16 @@ import java.math.BigInteger;
 @Builder
 public class BankAccountDto {
 
+
+    @NotNull(message = "Account number is required")
+    @Positive(message = "Account number must be positive")
     private Long accountNumber;
 
     @NotBlank(message = "Bank name is required")
     private String bankName;
 
     @Pattern(regexp = "^[A-Z]{4}0[A-Z0-9]{6}$", message = "Invalid IFSC code format")
-    private String IFSC;
+    private String ifsc;
 
     @NotNull
     @PositiveOrZero(message = "Balance must be zero or positive")
