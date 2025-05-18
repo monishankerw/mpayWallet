@@ -18,6 +18,8 @@ public class BankAccount {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long bccId;
+    @NotBlank(message = "Bank name is required")
     private Long accountNumber;
 
     @ManyToOne(fetch = FetchType.LAZY)
