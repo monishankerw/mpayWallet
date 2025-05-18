@@ -68,7 +68,7 @@ public class CustomerServiceImpl implements CustomerService {
                 .customerName(savedCustomer.getCustomerName())
                 .email(savedCustomer.getEmail())
                 .mobile((savedCustomer.getMobile()))
-                .walletBalance(savedCustomer.getWallet().getBalance())
+                .walletBalance(Double.valueOf(savedCustomer.getWallet().getBalance()))
                 .build();
 
         return new ApiResponse<>(true, "Registration successful", response);

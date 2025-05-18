@@ -1,18 +1,16 @@
 package com.mpayWallet.dto;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-@Builder
-public class BankToWalletResponse {
+public class AddMoneyResponse {
     private Long walletId;
-    private Long bankAccountId;
-    private Double amount;
+    private Long mobileNumber;
+    private Double updatedBalance;
     private String message;
 }

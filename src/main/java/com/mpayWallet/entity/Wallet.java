@@ -22,7 +22,7 @@ public class Wallet {
 
     @NotNull
     @PositiveOrZero(message = "Balance must be zero or positive")
-    private double balance;
+    private Double balance;
 
     @OneToOne(mappedBy = "wallet")
     private Customer customer;

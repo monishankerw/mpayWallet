@@ -33,7 +33,7 @@ public class Transaction {
 
     @NotNull
     @Positive(message = "Amount must be positive")
-    private Long amount;
+    private Double amount;
 
     @PastOrPresent(message = "Transaction date cannot be in the future")
     private Date transactionDate;

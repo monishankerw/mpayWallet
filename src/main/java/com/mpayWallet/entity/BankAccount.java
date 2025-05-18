@@ -34,7 +34,7 @@ public class BankAccount {
 
     @NotNull
     @PositiveOrZero(message = "Balance must be zero or positive")
-    private Long balance;
+    private Double balance;
 
     @Min(value = 6000000000L, message = "Mobile number must be valid")
     @Max(value = 9999999999L, message = "Mobile number must be valid")

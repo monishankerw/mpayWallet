@@ -1,9 +1,6 @@
 package com.mpayWallet.controller;
 
-import com.mpayWallet.dto.ApiResponse;
-import com.mpayWallet.dto.BankToWalletRequest;
-import com.mpayWallet.dto.BankToWalletResponse;
-import com.mpayWallet.dto.WalletDto;
+import com.mpayWallet.dto.*;
 import com.mpayWallet.service.WalletService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -40,5 +37,10 @@ public class WalletController {
 
         log.info("Wallet successfully funded. Response: {}", response);
         return ResponseEntity.ok(response);
+    }
+    @PostMapping("/wallet/fund-by-mobile")
+    public ResponseEntity<ApiResponse<AddMoneyResponse>> addMoneyByMobile(@RequestBody @Valid AddMoneyRequest request) {
+        log.info("Request received to add money via mobile number: {}", request.getMobileNumber());
+        return ResponseEntity.ok(walletService.addMoneyByMobile(request));
     }
 }

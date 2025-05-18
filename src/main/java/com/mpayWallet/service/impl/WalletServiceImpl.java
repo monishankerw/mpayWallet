@@ -1,9 +1,6 @@
 package com.mpayWallet.service.impl;
 
-import com.mpayWallet.dto.ApiResponse;
-import com.mpayWallet.dto.BankToWalletRequest;
-import com.mpayWallet.dto.BankToWalletResponse;
-import com.mpayWallet.dto.WalletDto;
+import com.mpayWallet.dto.*;
 import com.mpayWallet.entity.BankAccount;
 import com.mpayWallet.entity.Customer;
 import com.mpayWallet.entity.Transaction;
@@ -21,6 +18,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
+import java.util.Date;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -44,7 +43,7 @@ public class WalletServiceImpl implements WalletService {
 
         WalletDto dto = WalletDto.builder()
                 .walletId(wallet.getWalletId())
-                .balance((long) wallet.getBalance())
+                .balance(wallet.getBalance())
                 .customerId(customerId)
                 .build();
 
@@ -106,6 +105,43 @@ public class WalletServiceImpl implements WalletService {
         );
 
         log.info("Returning success response: {}", response);
+        return new ApiResponse<>(true, "Success", response);
+    }
+    @Transactional
+    @Override
+    public ApiResponse<AddMoneyResponse> addMoneyByMobile(AddMoneyRequest request) {
+        log.info("Finding customer by mobile number: {}", request.getMobileNumber());
+        Customer customer = customerRepository.findByMobile(request.getMobileNumber())
+                .orElseThrow(() -> new ResourceNotFoundException("Customer not found with mobile: " + request.getMobileNumber()));
+
+        Wallet wallet = customer.getWallet();
+        if (wallet == null) {
+            throw new ResourceNotFoundException("Wallet not found for customer with mobile: " + request.getMobileNumber());
+        }
+
+        log.info("Current wallet balance: {}", wallet.getBalance());
+        wallet.setBalance(wallet.getBalance() + request.getAmount());
+        walletRepository.save(wallet);
+        log.info("Updated wallet balance: {}", wallet.getBalance());
+
+        Transaction txn = Transaction.builder()
+                .transactionType("CREDIT")
+                .amount(request.getAmount())
+                .transactionDesc("Added money via mobile number")
+                .wallet(wallet)
+                .transactionDate(new Date())
+                .build();
+
+        transactionRepository.save(txn);
+        log.info("Transaction created for walletId {} with amount {}", wallet.getWalletId(), request.getAmount());
+
+        AddMoneyResponse response = new AddMoneyResponse(
+                wallet.getWalletId(),
+                request.getMobileNumber(),
+                wallet.getBalance(),
+                "Money added successfully"
+        );
+
         return new ApiResponse<>(true, "Success", response);
     }
 }

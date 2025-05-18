@@ -14,7 +14,7 @@ public class WalletDto {
 
     @NotNull
     @PositiveOrZero(message = "Balance must be zero or positive")
-    private Long balance;
+    private Double balance;
 
     @NotNull(message = "Customer ID is required")
     private Long customerId;

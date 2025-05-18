@@ -11,6 +11,6 @@ import lombok.NoArgsConstructor;
 @Builder
 public class BankToWalletRequest {
     private Long bccId;
-    private Long amount;
+    private Double amount;
 }
 

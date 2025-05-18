@@ -34,7 +34,7 @@ public class BillPayment {
 
     @NotNull
     @Positive(message = "Amount must be positive")
-    private Long amount;
+    private Double amount;
 
     @PastOrPresent(message = "Payment date cannot be in the future")
     private Date paymentDate;
