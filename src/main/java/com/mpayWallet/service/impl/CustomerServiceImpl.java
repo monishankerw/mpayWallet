@@ -14,6 +14,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -54,7 +56,7 @@ public class CustomerServiceImpl implements CustomerService {
 
         // Create and link wallet
         Wallet wallet = new Wallet();
-        wallet.setBalance(0.0);
+        wallet.setBalance(BigDecimal.valueOf(0.0));
         wallet.setCustomer(customer);
         customer.setWallet(wallet);
 
@@ -68,7 +70,7 @@ public class CustomerServiceImpl implements CustomerService {
                 .customerName(savedCustomer.getCustomerName())
                 .email(savedCustomer.getEmail())
                 .mobile((savedCustomer.getMobile()))
-                .walletBalance(Double.valueOf(savedCustomer.getWallet().getBalance()))
+                .walletBalance(Double.valueOf(String.valueOf(savedCustomer.getWallet().getBalance())))
                 .build();
 
         return new ApiResponse<>(true, "Registration successful", response);

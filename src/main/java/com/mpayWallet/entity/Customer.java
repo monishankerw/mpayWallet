@@ -1,5 +1,6 @@
 package com.mpayWallet.entity;
 
+import com.mpayWallet.utils.UserType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -9,6 +10,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Date;
 
 @Entity
 @Data
@@ -42,4 +45,11 @@ public class Customer {
 
     @Size(min = 6, message = "Password must be at least 6 characters")
     private String password;
+    private String state;
+    private String city;
+    private String pinCode;
+    private String country;
+
+    @Enumerated(EnumType.STRING)
+    private UserType userType;
 }
